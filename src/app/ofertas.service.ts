@@ -56,4 +56,32 @@ export class OfertasService {
     public getOfertas(): Oferta[] {
         return this.ofertas
     }
+
+    public getOfertas2(): Promise<Oferta[]> {
+        return new Promise<Oferta[]>((resolve, reject) => {
+            // Algum tipo de processamento, que ao finalizar, chama a função resolve ou reject
+            //console.log('será que passou por aqui?')
+            var deu_certo = true
+            if(deu_certo){
+                setTimeout(() => resolve( this.ofertas ), 3000)
+            } else
+                reject({codigo_erro: 404, mensagem_erro: 'Servidor não encontrado Mestre'})
+        })
+        .then(( ofertas: Oferta[] ) => {
+            //fazer alguma tratativa
+            console.log('primeiro then')
+            return ofertas
+        })
+        .then(( ofertas: Oferta[] ) => {
+            //fazer uma outra tratativa
+            console.log('segundo then')
+            return new Promise<Oferta[]>((resolve2, reject2) => {
+                setTimeout(() => { resolve2( ofertas ) }, 3000) 
+            })
+        })
+        .then(( ofertas: Oferta[] ) => {
+            console.log('terceiro then executado após 3 segundos porque estava aguardando uma promise ser resolvida')
+            return ofertas
+        })
+    }
 }
