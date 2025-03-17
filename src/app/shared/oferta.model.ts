@@ -1,12 +1,12 @@
 export class Oferta {
-    public id!: number;
-    public categoria!: string;
-    public titulo!: string;
-    public descricao_oferta!: string;
-    public anunciante!: string;
-    public valor!: number;
-    public destaque!: boolean;
-    public imagens!: Array<object>;
+    public id: number;
+    public categoria: string;
+    public titulo: string;
+    public descricao_oferta: string;
+    public anunciante: string;
+    public valor: number;
+    public destaque: boolean;
+    public imagens: Array<{url: string}>;
 
     constructor(
         id: number,
@@ -16,7 +16,7 @@ export class Oferta {
         anunciante: string,
         valor: number,
         destaque: boolean,
-        imagens: Array<object>
+        imagens: Array<{url: string}>
     ) {
         this.id = id;
         this.categoria = categoria;

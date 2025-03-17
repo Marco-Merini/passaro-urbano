@@ -5,6 +5,7 @@ import { RodapeComponent } from "./rodape/rodape.component";
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [TopoComponent, HomeComponent, RodapeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
