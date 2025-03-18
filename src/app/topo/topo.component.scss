@@ -1,13 +1,20 @@
 .menu {
-    background: #006ACB
+    background: #006ACB;
 }
 
 .nav-link {
-    color: #C1E4FF
+    color: #C1E4FF;
+    transition: color 0.3s ease-in-out;
 }
 
-.nav-link:hover{
-    color: #FFF
+.nav-link:hover {
+    color: #FFF;
+    font-weight: bold;
+}
+
+.nav-link.active {
+    color: #FFF;
+    font-weight: bold;
 }
 
 .banner {
@@ -16,9 +23,8 @@
 
 .banner img {
     width: 100%;
-    height: 230px
-}
-
-.active {
-    color: #FFF 
+    height: 230px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: -100px;
 }
