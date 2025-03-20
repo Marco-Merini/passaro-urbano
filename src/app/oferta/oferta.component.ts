@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, RouterModule } from '@angular/router';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 import { CommonModule } from '@angular/common';
@@ -9,25 +9,26 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, RouterModule],
   templateUrl: './oferta.component.html',
   styleUrls: ['./oferta.component.scss'],
-  providers: [ OfertasService ]
+  providers: [OfertasService],
 })
 export class OfertaComponent implements OnInit {
-  
-  // private tempoObservableSubscription: Subscription
-  // private meuObservableTestSubscription: Subscription
-
-  public ofertas: Oferta[] = []
+  public ofertas: Oferta[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private ofertasService: OfertasService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.ofertasService.getOfertaPorId(this.route.snapshot.params['id'])
-      .then(( oferta: Oferta[] ) => {
-        this.ofertas = oferta
-      })
+    this.route.params.subscribe((parametros: Params) => {
+      this.ofertasService.getOfertaPorId(parametros['id']).then(
+        (oferta: Oferta[]) => {
+          this.ofertas = oferta;
+        }
+      );
+    });
+  }
+}
       
       //Observable
       // // this.route.params.subscribe(
@@ -58,5 +59,3 @@ export class OfertaComponent implements OnInit {
       //   () => console.log('Stream de eventos foi finalizada')
       // )
       //
-  }
-}

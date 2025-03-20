@@ -1,4 +1,4 @@
-<div class="fixed-top">
+<div class="fixed-top" style="position: absolute">
   <nav class="navbar navbar-light bg-faded">
     <div class="container d-flex justify-content-between align-items-center">
       
@@ -13,11 +13,16 @@
           #termoDaPesquisa
           (keyup)="pesquisa(termoDaPesquisa.value)"
           />
-          <!-- <ul class="list-group" style="position: absolute;">
-            <li class="list-group-item" *ngFor="let oferta of ofertas2">{{ oferta.titulo }}</li>
-          </ul> -->
-      </div>
 
+          <ul class="list-group" style="position: absolute; z-index: 999;">
+            <li class="list-group-item" *ngFor="let oferta of ofertas | async">
+              <a [routerLink]="[ '/oferta', oferta.id ]" (click)="limpaPesquisa()">
+                {{ oferta.titulo }}
+              </a>
+            </li>
+          </ul>
+
+      </div>
       <div class="cart">
         <a href="/carrinho"> 
           <img src="/assets/carrinho.png" />
@@ -31,10 +36,10 @@
     <div class="container">
       <ul class="nav">
         <li class="nav-item">
-          <a routerLink="/restaurantes" routerLinkActive="active" class="nav-link">Restaurantes</a>
+          <a href="/restaurantes" routerLink="/restaurantes" routerLinkActive="active" class="nav-link">Restaurantes</a>
         </li>
         <li class="nav-item">
-          <a routerLink="/diversao" routerLinkActive="active" class="nav-link">Diversão</a>
+          <a href="/diversao" routerLink="/diversao" routerLinkActive="active" class="nav-link">Diversão</a>
         </li>
       </ul>
     </div>
