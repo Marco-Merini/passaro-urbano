@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, LOCALE_ID } from '@angular/core';
 import { TopoComponent } from "./topo/topo.component";
 import { RodapeComponent } from "./rodape/rodape.component";
 import { RouterModule } from '@angular/router';
