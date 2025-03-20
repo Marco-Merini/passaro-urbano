@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       .then(( ofertas: Oferta[] ) => {
         this.ofertas = ofertas
       })
-    .catch(( param: any ) =>
-      console.log( param ))
+    .catch(( param: any ) => {
+    })
   }
 }

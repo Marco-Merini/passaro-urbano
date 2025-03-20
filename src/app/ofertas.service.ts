@@ -1,8 +1,10 @@
+import { response } from 'express';
 import { HttpClient } from '@angular/common/http';
 import { Oferta } from './shared/oferta.model';
 import { Injectable } from '@angular/core';
-import { lastValueFrom } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { URL_API } from './api';
+import { map, retry } from 'rxjs/operators';
 
 @Injectable()
 
@@ -32,7 +34,7 @@ export class OfertasService {
             this.http.get<any[]>(`${URL_API}/como-usar?id=${id}`))
             .then(response => {
                 const item = response.find(oferta => oferta.id === id);
-                return item ? item.descricao : 'Descrição não encontrada';
+                return item ? item.descricao : 'Descrição não encontrada'
             });
     }
 
@@ -40,8 +42,15 @@ export class OfertasService {
         return lastValueFrom(
             this.http.get<any[]>(`${URL_API}/onde-fica?id=${id}`))
             .then(response => {
-                const item = response.find(oferta => oferta.id === id);
-                return item ? item.descricao : 'Descrição não encontrada';
+                const item = response.find(oferta => oferta.id === id)
+                return item ? item.descricao : 'Descrição não encontrada'
             });
+    }
+
+    public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+        return this.http.get<any[]>(`${URL_API}/ofertas?descricao_oferta=`)
+        .pipe(
+            retry(10),
+            map(( response: any ) => response ))
     }
 }
